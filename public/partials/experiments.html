@@ -1,0 +1,111 @@
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="span6">
+				<div class="inner-heading">
+					<h2>Search <strong>Files</strong></h2>
+				</div>
+			</div>
+			<div class="span6">
+				<ul class="breadcrumb">
+					<li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+					<li><a ui-sref="search">Search</a><i class="icon-angle-right"></i></li>
+					<li class="active">Files</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="content">
+	<div class="container">
+		<div class="row">
+			<div class="span3">
+				<aside class="left-sidebar">
+					<div class="widget" data-ng-init="gettypes()">
+						<h5 class="widgetheading">Experiment Types</h5>
+						<span ng-repeat="et in experimenttypes">
+							<input type='checkbox' value="{{et}}" check-list="checked_experimenttypes" ng-click="all()"> {{et}}<br />
+						</span>
+
+						<br />
+					    <h5 class="widgetheading">File Types</h5>
+						<ul class="cat" data-ng-controller="ExperimentsCtrl" data-ng-init="getfiletypes()">
+					        <li ng-repeat="ft in filetypes">
+					          <input type="checkbox" value="{{ft}}" check-list="checked_filetypes" ng-click="all()"> {{ft}}
+					        </li>
+					    </ul>
+					    <h5 class="widgetheading">Institutions</h5>
+						<ul class="cat" data-ng-controller="ExperimentsCtrl" data-ng-init="getinstitutions()">
+					        <li ng-repeat="it in institutions">
+					          <input type="checkbox" ng-model="search" value="{{it}}"> {{it}}
+					        </li>
+					    </ul>
+					</div>
+				</aside>
+			</div>
+			<div class="span9">
+				<div class="testimonial">
+					<p class="text">
+						<i class="icon-pushpin icon-48"></i> In this section you can search for the data submitted by researchers of the different IRDiRC projects. These datasets are stored in the European Genome-Phenome Archive (EGA) in their original format. You will need to request access to the Data Access Committee to download the data.  
+					</p>
+					<div class="author">
+						<img src="img/dummies/testimonial-author1.png" class="img-circle bordered" alt="">
+						<p class="name">
+							Helpdesk
+						</p>
+						<span class="info">DCC</span>
+					</div>
+				</div>
+				<br>
+				<tabset>
+				    <tab data-ng-controller="ExperimentsCtrl" >
+				    	<tab-heading>
+					        <i class="icon-table"></i>
+					    </tab-heading>
+				    	<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Experiment type</th>
+									<th>File type</th>
+									<th>Submitted by</th>
+									<th>Submitted day</th>
+									<th>QC score</th>
+									<th>Metadata</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="e in filteredexperiments">
+									<td>{{e.EXPERIMENT_ID}}</td>
+									<td>{{e.EXPERIMENT_TYPE}}</td>
+									<td>{{e.TYPE}}</td>
+									<td>{{e.CENTER_NAME}}</td>
+									<td>{{e.FIRST_SUBMISSION_DATE}}</td>
+									<td></td>
+									<td></td>
+									<td><a href="{{e.FILE}}" target="_blank"><i class="icon-cogs"></i></a></td>
+									<td><a href="{{e.FILE}}" target="_blank"><i class="icon-cloud-download"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+				    </tab>
+				     <tab>
+				     	<tab-heading>
+					        <i class="icon-bar-chart"></i>
+					    </tab-heading>
+				     </tab>	
+				</tabset>
+			
+			
+			
+					
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+<div ui-view></div>

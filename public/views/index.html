@@ -1,0 +1,82 @@
+<section data-ng-controller="IndexController">
+	<div class="row-fluid">	
+		<div class="span3">
+			<aside class="left-sidebar">
+				<div class="widget">
+					<h5 class="widgetheading">Basic</h5>
+					<accordion close-others="oneAtATime">
+					 <accordion-group>
+				     <accordion-heading>
+				            <i class="fa fa-smile-o"></i> Genes
+				        </accordion-heading>
+				        This is just some content to illustrate fancy headings.
+				    </accordion-group>
+				    <accordion-group is-open="false">
+				     	<accordion-heading>
+				            <i class="fa fa-smile-o"></i> Donors
+				        </accordion-heading>
+				        <ul>
+				        	<li><a href="">Phenotype</a></li>
+				        </ul>   
+				    </accordion-group>
+				    <accordion-group is-open="false">
+				     	<accordion-heading>
+				            <i class="fa fa-smile-o"></i> Samples
+				        </accordion-heading>
+				        <ul>
+				        	<li><a href="">Human</a></li>
+				        </ul>   
+				    </accordion-group>
+				  </accordion>
+				</div>
+				<div class="widget">
+					<h5 class="widgetheading">Data</h5>
+					<accordion close-others="oneAtATime">
+					 <accordion-group is-open="false">
+				     <accordion-heading>
+				            <i class="fa fa-smile-o"></i> Genomic Data
+				        </accordion-heading>
+				        <h6>Primary data</h6>
+				        <ul>
+					        <li><a href="">DNA-seq</a></li>
+					        <li><a href="">CNVs</a></li>
+				        </ul>
+				    </accordion-group>
+				    <accordion-group is-open="true">
+				        <accordion-heading>
+				            <i class="fa fa-smile-o"></i> Epigenetic Data
+				        </accordion-heading>
+				        <h6>Primary data <small>(Reads and alignments)</small></h6>
+				        <ul>
+					        <li><a href="">ChIP-seq</a></li>
+					        <li><a href="">DNAseI</a></li>
+					        <li><a href="">RNA-seq</a></li>
+					        <li><a href="">WGBS</a></li>
+				        </ul>
+				        <h6>Secondary data <small>(Peaks and signal)</small></h6>
+				        <ul>
+					        <li><a href="">ChIP-seq</a></li>
+					        <li><a href="">DNAseI</a></li>
+					        <li><a href="">RNA-seq</a></li>
+					        <li><a href="">WGBS</a></li>
+				        </ul>
+				    </accordion-group>
+				  </accordion>
+				</div>
+				<div class="widget">
+					<h5 class="widgetheading">Advanced</h5>
+				     <accordion-group>
+				     <accordion-heading>
+				            <i class="fa fa-smile-o"></i> Analyses
+				        </accordion-heading>
+				        This is just some content to illustrate fancy headings.
+				    </accordion-group>
+				  </accordion>
+				</div>
+			</aside>
+		</div>
+		<div class="span9">
+
+		</div>
+	</div>
+</section>
