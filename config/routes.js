@@ -1,4 +1,12 @@
 module.exports = function(app, passport, auth) {
+
+	app.all('/', function(req, res, next) {
+	  res.header("Access-Control-Allow-Origin", "*");
+	  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	  next();
+	 });
+
+
     //User Routes
     var users = require('../app/controllers/users');
     app.get('/signin', users.signin);

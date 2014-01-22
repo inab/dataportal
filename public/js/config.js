@@ -1,8 +1,7 @@
 //Setting up route
-dataportal.config(function($stateProvider, $urlRouterProvider) {
+dataportal.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
   //
   // For any unmatched url, redirect to /state1
-  $urlRouterProvider.otherwise("/home");
   //
   // Now set up the states
   $stateProvider
@@ -15,22 +14,4 @@ dataportal.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: "partials/experiments.html",
       controller: "ExperimentsCtrl"
     })
-    .state('state1.list', {
-      url: "/list",
-      templateUrl: "partials/state1.list.html",
-      controller: function($scope) {
-        $scope.items = ["A", "List", "Of", "Items"];
-      }
-    })
-    .state('state2', {
-      url: "/state2",
-      templateUrl: "partials/state2.html"
-    })
-    .state('state2.list', {
-      url: "/list",
-        templateUrl: "partials/state2.list.html",
-        controller: function($scope) {
-          $scope.things = ["A", "Set", "Of", "Things"];
-        }
-      });
-    });
+});

@@ -48,7 +48,7 @@ dataportal.controller('ExperimentsCtrl', ['$scope','$http','$templateCache','fil
     $scope.getfiletypes = function() {
   
  
-        $http({method: 'GET', url: '/experiments/getfiletypes', cache: $templateCache}).
+        $http({method: 'GET', url: 'http://darthcaedus:1900/RDConnect/file_types', cache: $templateCache}).
             success(function(data, status, headers, config) {
                 $scope.filetypes  = data;     
                   		                //set view model
