@@ -13,10 +13,11 @@ dataportal.controller('ExperimentsCtrl', ['$scope','$http','$templateCache','fil
 */
 
   	$scope.all = function() {
-  		console.log($scope.checked_experimenttypes);
-  		console.log($scope.checked_filetypes);
- 		Experiments.query(function(experiments) {
-             $scope.filteredexperiments = filterFilter(experiments,function(value){
+  	
+   		$http({method: 'GET', url: 'http://darthcaedus:1900/RDConnect/experiments', cache: $templateCache}).
+        success(function(data, status, headers, config) {
+            $scope.experiments  = data;  
+             $scope.filteredexperiments = filterFilter($scope.experiments,function(value){
 				
 				           	
 	            if ($scope.checked_experimenttypes.indexOf(value.EXPERIMENT_TYPE) != -1 ){
@@ -25,16 +26,19 @@ dataportal.controller('ExperimentsCtrl', ['$scope','$http','$templateCache','fil
 	            	
 	            	return false
 	            }		
-            });
-
+            });   
+              		                //set view model
+        }).
+        error(function(data, status, headers, config) {
+           console.log(data);
         });
-
+  	
     };
     
     $scope.gettypes = function() {
   
  
-        $http({method: 'GET', url: '/experiments/gettypes', cache: $templateCache}).
+        $http({method: 'GET', url: 'http://darthcaedus:1900/RDConnect/experiment_types', cache: $templateCache}).
             success(function(data, status, headers, config) {
                 $scope.experimenttypes  = data;     
                   		                //set view model
