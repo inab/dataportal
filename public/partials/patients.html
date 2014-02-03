@@ -1,0 +1,181 @@
+<div id="uploadDonorList" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="uploadDonorListLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h4 id="uploadDonorListLabel">Donors</h4>
+	</div>
+	<div class="modal-body">
+		<form class="form-horizontal">
+			<div class="control-group">
+				<label class="control-label" for="donorList">Donor list</label>
+				<div class="controls">
+					<textarea  type="text" id="donorList" placeholder="Paste your list one patient per line" class="input-xlarge" rows="10"></textarea>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<button type="submit" class="btn">Save</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<section id="inner-headline" class="patients">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span6">
+				<div class="inner-heading">
+					<h2><i class="icon-hospital"></i> Search <strong>Donors</strong></h2>
+				</div>
+			</div>
+			<div class="span6">
+				<ul class="breadcrumb">
+					<li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+					<li><a>Search</a><i class="icon-angle-right"></i></li>
+					<li class="active">Donors</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="content">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span3">
+				<aside class="left-sidebar">
+					 <tabset>
+						 <tab>
+					    	<tab-heading>Donors</tab-heading>
+						    <div class="widget" ng-controller="PatientsCtrl">
+								<input type="text" placeholder="Donor ID" />
+								<p><a href="#uploadDonorList" data-toggle="modal"><i class=" icon-upload-alt"></i> Upload list</a></p>
+						    </div>
+						    <div class="widget" ng-controller="InstitutionsCtrl" data-ng-init="getinstitutions()">
+								<h5 class="widgetheading">Institution</h5>
+								<div class="" ng-repeat="i in institutions">
+									<div class="pull-left">
+										<input type='checkbox' value="{{i.shortname}}" check-list="checkedInstitutions"> {{i.shortname}}
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						    <div class="widget" ng-controller="PatientsCtrl" data-ng-init="getgenders()">
+						   		<h6 class="widgetheading">Sex</h6>	
+								<span ng-repeat="g in genders">
+									<input type='checkbox' value="{{g.name}}" check-list="checkedGenders"> {{g.name}}<br />
+								</span>
+							</div>
+							<div class="widget">
+						   		<h6 class="widgetheading">Diagnosis</h6>
+						   		<div ng-controller="OrphanetsCtrl" data-ng-init="getOrphanets()">	
+									<input type="text" placeholder="Orphanet disorder name" ng-model="checkedOrphanets" typeahead="orphanet.fullname for orphanet in orphanets | filter:$viewValue" />
+						   		</div>
+						   		<div ng-controller="OmimsCtrl" data-ng-init="getOmims()">	
+									<input type="text" placeholder="OMIM disorder name" ng-model="checkedOmims" typeahead="omim.fullname for omim in omims | filter:$viewValue" />
+						   		</div>
+						   		<div ng-controller="Icd10sCtrl" data-ng-init="getIcd10s()">	
+									<input type="text" placeholder="ICD-10 name" ng-model="checkedIcd10s" typeahead="icd10.fullname for icd10 in icd10s | filter:$viewValue" />
+						   		</div>
+							</div>
+							<div class="widget" ng-controller="PatientsCtrl">
+						   		<h6 class="widgetheading">Clinical symptoms</h6>	
+								<input type='checkbox'> This patient is clinically normal
+							</div>
+							
+						 </tab>
+						 <tab>
+					    	<tab-heading>Affected Genes</tab-heading>
+						    <div class="widget" ng-controller="PatientsCtrl">
+								<input type="text" placeholder="Gene ID" />
+							</div>
+							<div class="widget" ng-controller="GenesCtrl" data-ng-init="getChromosomes()">
+								<h5 class="widgetheading">Chromosome</h5>
+								<div class="" ng-repeat="c in chromosomes">
+									<input type='checkbox' value="{{c.name}}" check-list="checkedChromosomes"> {{c.name}}
+								</div>
+							</div>
+							<div class="widget" ng-controller="GenesCtrl" data-ng-init="getGeneTypes()">
+								<h5 class="widgetheading">Type</h5>
+								<div class="" ng-repeat="g in geneTypes">
+									<input type='checkbox' value="{{g.name}}" check-list="checkedGeneTypes"> {{g.name}}
+								</div>
+							</div>
+						 </tab>
+						 <tab>
+					    	<tab-heading>Variants</tab-heading>
+							<div class="widget" ng-controller="PatientsCtrl">
+						   		<h6 class="widgetheading">SNPs</h6>	
+								<input type="text" placeholder="DbSNP ID" />
+							</div>
+							<div class="widget" ng-controller="VariantsCtrl" data-ng-init="getVariantTypes()">
+								<h5 class="widgetheading">Types</h5>
+								<div class="" ng-repeat="vt in variantTypes">
+									<div class="pull-left">
+										<input type='checkbox' value="{{vt.name}}" check-list="checkedVariantTypes"> {{vt.name}}
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+							<div class="widget" ng-controller="VariantsCtrl" data-ng-init="getVariantConsequences()">
+								<h5 class="widgetheading">Consequence</h5>
+								<div class="" ng-repeat="vc in variantConsequences">
+									<div class="pull-left">
+										<input type='checkbox' value="{{vc.name}}" check-list="checkedVariantConsequences"> {{vc.name}}
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+							<div class="widget" ng-controller="VariantsCtrl" data-ng-init="getVariantVerificationStatuses()">
+								<h5 class="widgetheading">Verification Status</h5>
+								<div class="" ng-repeat="vs in variantVerificationStatuses">
+									<div class="pull-left">
+										<input type='checkbox' value="{{vs.name}}" check-list="checkedVariantVerificationStatuses"> {{vs.name}}
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						 </tab> 
+					 </tabset> 
+				</aside>
+			</div>
+			<div class="span9">
+				<tabset>
+				    <tab data-ng-controller="PatientsCtrl" data-ng-init="all()">
+				    	<tab-heading>Donors</tab-heading>
+				    	<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Patient ID</th>
+									<th>Institution</th>
+									<th>Gender</th>
+									<th># Genes</th>
+									<th># Mutations</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="p in patients | filter:filteredPatients">
+									<td>{{p.id}}</td>
+									<td>{{p.institution}}</td>
+									<td>{{p.gender}}</td>
+									<td>{{p.genes}}</td>
+									<td>{{p.mutations}}</td>
+									<td><a href="index.html#/search/analyses/view/{{a.analysisType}}/{{a.id}}"><i class="icon-bar-chart"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+				    </tab>
+				    <tab data-ng-controller="AnalysesCtrl">
+				    	<tab-heading>
+					        Genes
+					    </tab-heading> 
+				    </tab>
+				    <tab data-ng-controller="AnalysesCtrl">
+				    	<tab-heading>
+					        Variants
+					    </tab-heading>
+				    </tab>   
+				</tabset>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,33 @@
+<div id="analisis-modal" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h4 id="mySignupModalLabel">{{typeModalTitle}}</h4>
+	</div>
+	<div class="modal-body">
+		{{typeModalBody}}
+	</div>
+</div>
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="span6">
+				<div class="inner-heading">
+					<h2><i class="icon-bar-chart"></i> View <strong>Analysis Report</strong></h2>
+				</div>
+			</div>
+			<div class="span6">
+				<ul class="breadcrumb">
+					<li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+					<li><a>Search</a><i class="icon-angle-right"></i></li>
+					<li><a ui-sref="analyses">Analyses</a><i class="icon-angle-right"></i></li>
+					<li class="active">View Report</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="content">
+	<div ui-view></div>
+	
+</section>
+

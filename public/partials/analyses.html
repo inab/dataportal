@@ -1,0 +1,204 @@
+<div id="modal" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h4 id="mySignupModalLabel">{{modalTitle}}</h4>
+	</div>
+	<div class="modal-body">
+		{{modalBody}}
+	</div>
+</div>
+<section id="inner-headline" class="analyses">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span6">
+				<div class="inner-heading">
+					<h2><i class="icon-cogs"></i> Search <strong>Analyses</strong></h2>
+				</div>
+			</div>
+			<div class="span6">
+				<ul class="breadcrumb">
+					<li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+					<li><a ui-sref="search">Search</a><i class="icon-angle-right"></i></li>
+					<li class="active">Analyses</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="content">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span3">
+				<aside class="left-sidebar">
+					<div class="widget" ng-controller="AnalysesCtrl" data-ng-init="getanalysiscategories()">
+						<h5 class="widgetheading">Categories</h5>
+						<span ng-repeat="ac in analysiscategories">
+							<input type='checkbox' value="{{ac.machineName}}" check-list="checkedAnalysisCategories"> {{ac.name}}<br />
+						</span>
+					</div>
+					<div class="widget" ng-controller="ExperimentTypesCtrl" data-ng-init="getExperimentTypes()">
+						<h5 class="widgetheading">Experiment Types</h5>
+						<div class="" ng-repeat="et in experimentTypes">
+							<div class="pull-left">
+								<input type='checkbox' value="{{et.machineName}}" check-list="checkedExperimentTypes"> {{et.name}}
+							</div>
+							<div class="pull-right">
+								<a href="#modal" data-toggle="modal" ng-click="populateExperiementTypesModal(et)"><i class="icon-question-sign"></i></a>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="widget" ng-controller="AnalysesCtrl" data-ng-init="getanalysistypes()">
+						<h5 class="widgetheading">Analysis Types</h5>
+						<div class="" ng-repeat="at in analysistypes | filter:filterAnalysisTypes">
+							<div class="pull-left">
+								<input type='checkbox' value="{{at.machineName}}" check-list="checkedAnalysisTypes"> {{at.name}}
+							</div>
+							<div class="pull-right">
+								<a href="#modal" data-toggle="modal" ng-click="populateTypeModal(at)"><i class="icon-question-sign"></i></a>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="widget" ng-controller="InstitutionsCtrl" data-ng-init="getinstitutions()">
+						<h5 class="widgetheading">Institutions</h5>
+						<div class="" ng-repeat="i in institutions">
+							<div class="pull-left">
+								<input type='checkbox' value="{{i.shortname}}" check-list="checkedInstitutions"> {{i.shortname}}
+							</div>
+							<div class="pull-right">
+								<a href="#modal" data-toggle="modal" ng-click="populateInstitutionModal(i)"><i class="icon-question-sign"></i></a>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</aside>
+			</div>
+			<div class="span9">
+				<div class="testimonial">
+					<p class="text"><i class="icon-pushpin icon-48"></i>In this section you can see all the analyses carried out within the platform. We have divided the analyses in three main categories to facilitate the navigation, examples of the analyses within each category are provided below:</p>
+					<ul>
+						<li><p class="text">Primary analyses</p></li>
+						<ul>
+							<li><p class="text">Analyses of hardware generated data, machine stats etc.</p></li>
+							<li><p class="text">Production of sequence reads and quality scores.</p></li>
+						</ul>
+						<li><p class="text">Secondary analyses</p></li>
+						<ul>
+							<li><p class="text">QA filtering on raw data</p></li>
+							<li><p class="text">Alignment/Assembly of reads</p></li>
+							<li><p class="text">QA and variant calling on aligned reads</p></li>
+						</ul>
+						<li><p class="text">Tertiary analyses ("Sense Making")</p></li>
+						<ul>
+							<li><p class="text">Multi-sample processing</p></li>
+							<li><p class="text">QA/QC of variant calls</p></li>
+							<li><p class="text">Annotation and filtering of variants</p></li>
+							<li><p class="text">Data agregation</p></li>
+							<li><p class="text">Association analyses</p></li>
+							<li><p class="text">Population structure analyses</p></li>
+							<li><p class="text">Genome brow-fluidser driven exploratory analyses</p></li>
+						</ul>
+						
+					</ul>
+					<p class="text">&nbsp;</p>
+					<div class="author">
+						<img src="img/dummies/testimonial-author1.png" class="img-circle bordered" alt="">
+						<p class="name">
+							Helpdesk
+						</p>
+						<span class="info">DCC</span>
+					</div>
+				</div>
+				<br>
+				<tabset>
+				    <tab data-ng-controller="AnalysesCtrl" data-ng-init="all()">
+				    	<tab-heading>
+					        <i class="icon-table"></i>
+					    </tab-heading>
+				    	<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Category</th>
+									<th>Experiment type</th>
+									<th>Analysis type</th>
+									<th>Submitted by</th>
+									<th>Submitted day</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="a in analyses | filter:filterAnalysis">
+									<td>{{a.id}}</td>
+									<td>{{a.category}}</td>
+									<td>{{a.experimentType}}</td>
+									<td>{{a.analysisType}}</td>
+									<td>{{a.submittedBy}}</td>
+									<td>{{a.submittedDay}}</td>
+									<td><a href="index.html#/search/analyses/view/{{a.analysisType}}/{{a.id}}"><i class="icon-bar-chart"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+				    </tab>
+				     <tab>
+				     	<tab-heading>
+					        <i class="icon-bar-chart"></i>
+					    </tab-heading>
+					    <div class="row-fluid">
+						    <div class="span2">
+								<h5>Categories</h5>
+							    <div ng-controller="AnalysesCtrl" data-ng-init="getanalysiscategories()">
+									<nvd3-pie-chart
+								    	data="categoriesStats"
+								        id="categories"
+								        width="150"
+								        height="150"
+								        margin="{left:0,top:0,bottom:0,right:0}"
+								        x="xFunction()"
+								        y="yFunction()"
+								        tooltips="true"
+								        	<svg height="100"></svg>
+								    </nvd3-pie-chart>
+								</div>
+							</div>
+						    <div class="span2">
+						    	<h5>Experiments</h5>
+							   <div ng-controller="AnalysesCtrl">
+									<nvd3-pie-chart
+								    	data="pieData"
+								        id="other"
+								        width="150"
+								        height="150"
+								        margin="{left:0,top:0,bottom:0,right:0}"
+								        x="xFunction()"
+								        y="yFunction()"
+								        tooltips="true"
+								        	<svg height="100"></svg>
+								    </nvd3-pie-chart>
+								</div>
+						    </div>
+						    <div class="span2">
+						    	<h5>Analyses</h5>
+							   <div ng-controller="AnalysesCtrl" data-ng-init="getanalysistypes()">
+									<nvd3-pie-chart
+								    	data="analysisStats"
+								        id="analyses"
+								        width="150"
+								        height="150"
+								        margin="{left:0,top:0,bottom:0,right:0}"
+								        x="xFunction()"
+								        y="yFunction()"
+								        tooltips="true"
+								        	<svg height="100"></svg>
+								    </nvd3-pie-chart>
+								</div>
+						    </div>
+						</div>
+				     </tab>	
+				</tabset>
+			
+			</div>
+		</div>
+	</div>
+</section>
