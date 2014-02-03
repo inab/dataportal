@@ -1,9 +1,9 @@
-<section id="inner-headline">
-	<div class="container">
-		<div class="row">
+<section id="inner-headline" class="files">
+	<div class="container-fluid">
+		<div class="row-fluid">
 			<div class="span6">
 				<div class="inner-heading">
-					<h2>Search <strong>Files</strong></h2>
+					<h2><i class="icon-file"></i> Search <strong>Files</strong></h2>
 				</div>
 			</div>
 			<div class="span6">
@@ -17,29 +17,51 @@
 	</div>
 </section>
 <section id="content">
-	<div class="container">
-		<div class="row">
+	<div class="container-fluid">
+		<div class="row-fluid">
 			<div class="span3">
 				<aside class="left-sidebar">
-					<div class="widget" data-ng-init="gettypes()">
-						<h5 class="widgetheading">Experiment Types</h5>
-						<span ng-repeat="et in experimenttypes">
-							<input type='checkbox' value="{{et}}" check-list="checked_experimenttypes" ng-click="all()"> {{et}}<br />
+					<div class="widget" ng-controller="AnalysesCtrl" data-ng-init="getanalysiscategories()">
+						<h5 class="widgetheading">Categories</h5>
+						<span ng-repeat="ac in analysiscategories">
+							<input type='checkbox' value="{{ac.machineName}}" check-list="checkedAnalysisCategories"> {{ac.name}}<br />
 						</span>
-
-						<br />
-					    <h5 class="widgetheading">File Types</h5>
-						<ul class="cat" data-ng-controller="ExperimentsCtrl" data-ng-init="getfiletypes()">
-					        <li ng-repeat="ft in filetypes">
-					          <input type="checkbox" value="{{ft}}" check-list="checked_filetypes" ng-click="all()"> {{ft}}
-					        </li>
-					    </ul>
-					    <h5 class="widgetheading">Institutions</h5>
-						<ul class="cat" data-ng-controller="ExperimentsCtrl" data-ng-init="getinstitutions()">
-					        <li ng-repeat="it in institutions">
-					          <input type="checkbox" ng-model="search" value="{{it}}"> {{it}}
-					        </li>
-					    </ul>
+					</div>
+					<div class="widget" ng-controller="ExperimentTypesCtrl" data-ng-init="getExperimentTypes()">
+						<h5 class="widgetheading">Experiment Types</h5>
+						<div class="" ng-repeat="et in experimentTypes">
+							<div class="pull-left">
+								<input type='checkbox' value="{{et.machineName}}" check-list="checkedExperimentTypes"> {{et.name}}
+							</div>
+							<div class="pull-right">
+								<a href="#modal" data-toggle="modal" ng-click="populateExperiementTypesModal(et)"><i class="icon-question-sign"></i></a>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="widget" ng-controller="FileTypesCtrl" data-ng-init="getFileTypes()">
+						<h5 class="widgetheading">File Types</h5>
+						<div class="" ng-repeat="ft in fileTypes | filter:filterFileTypes">
+							<div class="pull-left">
+								<input type='checkbox' value="{{ft.name}}" check-list="checkedFileTypes"> {{ft.name}}
+							</div>
+							<div class="pull-right">
+								<a href="#modal" data-toggle="modal" ng-click="populateFileTypeModal(ft)"><i class="icon-question-sign"></i></a>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="widget" ng-controller="InstitutionsCtrl" data-ng-init="getinstitutions()">
+						<h5 class="widgetheading">Institutions</h5>
+						<div class="" ng-repeat="i in institutions">
+							<div class="pull-left">
+								<input type='checkbox' value="{{i.shortname}}" check-list="checkedInstitutions"> {{i.shortname}}
+							</div>
+							<div class="pull-right">
+								<a href="#modal" data-toggle="modal" ng-click="populateInstitutionModal(i)"><i class="icon-question-sign"></i></a>
+							</div>
+							<div class="clearfix"></div>
+						</div>
 					</div>
 				</aside>
 			</div>

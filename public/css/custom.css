@@ -12,3 +12,40 @@
 	-ms-transition: background-position 1s ease-out 0.3s;
 	transition: background-position 1s ease-out 0.3s;
 }
+li p.text{margin-bottom: 0px !important;}
+.testimonial{
+	color: #c09853;
+	background-color: #fcf8e3;
+	border: 1px solid #fbeed5;
+}
+.testimonial p.text{
+	color: #c09853 !important;
+}
+.box {
+  font: 10px sans-serif;
+}
+
+/* d3 drectives */
+
+.box line,
+.box rect,
+.box circle {
+  fill: #fff;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.box .center {
+  stroke-dasharray: 3,3;
+}
+
+.box .outlier {
+  fill: none;
+  stroke: #ccc;
+}
+
+#perBaseQuality rect.box{fill:yellow;}
+#perBaseQuality line.median{stroke:red;}
+#inner-headline.patients{background: url('/img/patients.jpg');}
+#inner-headline.analyses{background: url('/img/analyses.jpg');}
+#inner-headline.files{background: url('/img/files.jpg');}
