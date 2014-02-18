@@ -1,0 +1,30 @@
+<accordion close-others="oneAtATime">
+ <accordion-group is-open="isopen1">
+	<accordion-heading>Sex <i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen1, 'icon-chevron-right': !isopen1}"></i></accordion-heading>
+    <div class="widget" ng-controller="PatientsCtrl" data-ng-init="getgenders()">
+		<span ng-repeat="g in genders">
+			<input type='checkbox' value="{{g.name}}" check-list="checkedGenders"> {{g.name}}<br />
+		</span>
+	</div>
+ </accordion-group>
+  <accordion-group is-open="isopen2">
+	<accordion-heading>Diagnosis <i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen2, 'icon-chevron-right': !isopen2}"></i></accordion-heading>
+    <div class="widget">
+   		<div ng-controller="OrphanetsCtrl" data-ng-init="getOrphanets()">	
+			<input type="text" placeholder="Orphanet disorder name" ng-model="Orphanets" typeahead-on-select="setItem($item)" typeahead="orphanet.fullname for orphanet in orphanets | filter:$viewValue" />
+   		</div>
+   		<div ng-controller="OmimsCtrl" data-ng-init="getOmims()">	
+			<input type="text" placeholder="OMIM disorder name" ng-model="Omims" typeahead-on-select="setItem($item)" typeahead="omim.fullname for omim in omims | filter:$viewValue" />
+   		</div>
+   		<div ng-controller="Icd10sCtrl" data-ng-init="getIcd10s()">	
+			<input type="text" placeholder="ICD-10 name" ng-model="Icd10s"  typeahead-on-select="setItem($item)" typeahead="icd10.fullname for icd10 in icd10s | filter:$viewValue" />
+   		</div>
+ 	</div>
+ </accordion-group>
+  <accordion-group is-open="isopen3">
+	<accordion-heading>Clinical symptoms <i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen3, 'icon-chevron-right': !isopen3}"></i></accordion-heading>
+    <div class="widget" ng-controller="PatientsCtrl">
+		<input type='checkbox'> This patient is clinically normal
+	</div>
+ </accordion-group>
+</accordion>

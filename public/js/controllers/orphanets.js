@@ -1,6 +1,5 @@
-dataportal.controller('OrphanetsCtrl', ['Global','$scope','$http','$templateCache','filterFilter', function (Global,$scope,$http,$templateCache,filterFilter) {
+dataportal.controller('OrphanetsCtrl', ['Global','$scope','$rootScope','$http','$templateCache','filterFilter', function (Global,$scope,$rootScope,$http,$templateCache,filterFilter) {
     
-	$scope.checkedOrphanets = Global.checkedOrphanets;
 	$scope.orphanets = [];
 
     $scope.getOrphanets = function() {
@@ -10,5 +9,11 @@ dataportal.controller('OrphanetsCtrl', ['Global','$scope','$http','$templateCach
 							];
         
     };
+    
+    $scope.setItem = function(item) {
+
+  		Global.checkedOrphanets = [item];
+  		$rootScope.$emit('filtersUpdated');
+  	};
 
 }]);

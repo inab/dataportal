@@ -1,0 +1,58 @@
+<accordion close-others="oneAtATime">
+ <accordion-group is-open="isopen1">
+	<accordion-heading>Affected Genes <i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen1, 'icon-chevron-right': !isopen1}"></i></accordion-heading>
+    <div class="widget" ng-controller="PatientsCtrl">
+		<input type="text" placeholder="Gene ID" />
+	</div>
+	<div class="widget" ng-controller="GenesCtrl" data-ng-init="getChromosomes()">
+		<h5 class="widgetheading">Chromosome</h5>
+		<div class="" ng-repeat="c in chromosomes">
+			<input type='checkbox' value="{{c.name}}" check-list="checkedChromosomes"> {{c.name}}
+		</div>
+	</div>
+	<div class="widget" ng-controller="GenesCtrl" data-ng-init="getGeneTypes()">
+		<h5 class="widgetheading">Type</h5>
+		<div class="" ng-repeat="g in geneTypes">
+			<input type='checkbox' value="{{g.machine_name}}" check-list="checkedGeneTypes"> {{g.name}}
+		</div>
+	</div>
+ </accordion-group>
+ <accordion-group is-open="isopen2">
+	<accordion-heading>Variants <i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen2, 'icon-chevron-right': !isopen2}"></i></accordion-heading>
+	<div class="widget" ng-controller="PatientsCtrl">
+   		<h6 class="widgetheading">SNPs</h6>	
+		<input type="text" placeholder="DbSNP ID" />
+	</div>
+	<div class="widget" ng-controller="VariantsCtrl" data-ng-init="getVariantTypes()">
+		<h5 class="widgetheading">Types</h5>
+		<div class="" ng-repeat="vt in variantTypes">
+			<div class="pull-left">
+				<input type='checkbox' value="{{vt.machine_name}}" check-list="checkedVariantTypes"> {{vt.name}}
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="widget" ng-controller="VariantsCtrl" data-ng-init="getVariantConsequences()">
+		<h5 class="widgetheading">Consequence</h5>
+		<div class="" ng-repeat="vc in variantConsequences">
+			<div class="pull-left">
+				<input type='checkbox' value="{{vc.machine_name}}" check-list="checkedVariantConsequences"> {{vc.name}}
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="widget" ng-controller="VariantsCtrl" data-ng-init="getVariantVerificationStatuses()">
+		<h5 class="widgetheading">Verification Status</h5>
+		<div class="" ng-repeat="vs in variantVerificationStatuses">
+			<div class="pull-left">
+				<input type='checkbox' value="{{vs.machine_name}}" check-list="checkedVariantVerificationStatuses"> {{vs.name}}
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+ </accordion-group> 
+ <accordion-group is-open="isopen3">
+	<accordion-heading>Experiments available <i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen3, 'icon-chevron-right': !isopen3}"></i></accordion-heading>
+	
+ </accordion-group> 
+</accordion>

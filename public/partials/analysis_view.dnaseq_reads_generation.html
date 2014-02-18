@@ -1,33 +1,66 @@
-<div class="container">
-		<div class="row">
-			<div class="span12">
-				<div class="testimonial">
-					<p class="text"><i class="icon-pushpin icon-48"></i>In this report you can check the quality of the sequence obtained. The analysis is performed using the FastQC software. FastQC aims to provide a simple way to do some quality control checks on raw sequence data coming from high throughput sequencing pipelines. It provides a modular set of analyses which you can use to give a quick impression of whether your data has any problems of which you should be aware before doing any further analysis.</p>
-					<div class="author">
-						<img src="img/dummies/testimonial-author1.png" class="img-circle bordered" alt="">
-						<p class="name">
-							Helpdesk
-						</p>
-						<span class="info">DCC</span>
-					</div>
-				</div>
-				<br />
+<div class="container-fluid" ng-controller="AnalysesDnaseqReadsCtrl">
+	<div class="row-fluid">
+		<div class="span9">
 				<tabset>
 				    <tab>
-				    	<tab-heading>
-					        <i class="icon-ok-circle"></i>Seq quality
-					    </tab-heading>
+				    	<tab-heading><i class="icon-ok-circle"></i>Seq quality</tab-heading>
+					    <h6>Per Base Sequence Quality</h6>
+					    <p>This view shows an overview of the range of quality values across all bases at each position in the FastQ file.</p>	
 					    <div id="perBaseQuality" per-base-sequence-quality></div>
+					    <p>For each position a BoxWhisker type plot is drawn. The elements of the plot are as follows:</p>
+						<ul>
+							<li>The central red line is the median value</li>
+							<li>The yellow box represents the inter-quartile range (25-75%)</li>
+							<li>The upper and lower whiskers represent the 10% and 90% points</li>
+							<li>The blue line represents the mean quality</li>
+							<li>The y-axis on the graph shows the quality scores. The higher the score the better the base call. The background of the graph divides the y axis into very good quality calls (green), calls of reasonable quality (orange), and calls of poor quality (red). The quality of calls on most platforms will degrade as the run progresses, so it is common to see base calls falling into the orange area towards the end of a read.</li>
+						</ul>
+						<p>It should be mentioned that there are number of different ways to encode a quality score in a FastQ file. FastQC attempts to automatically determine which encoding method was used, but in some very limited datasets it is possible that it will guess this incorrectly (ironically only when your data is universally very good!). The title of the graph will describe the encoding FastQC thinks your file used.</p>
 				    </tab>
 				    <tab>
-				    	<tab-heading>
-					        <i class="icon-ok-circle"></i>Quality scores
-					    </tab-heading>
+				    	<tab-heading><i class="icon-ok-circle"></i>Quality scores</tab-heading>
+							<h6>Per Sequence Quality Scores</h6>
+							<p>The per sequence quality score report allows you to see if a subset of your sequences have universally low quality values. It is often the case that a subset of sequences will have universally poor quality, often because they are poorly imaged (on the edge of the field of view etc), however these should represent only a small percentage of the total sequences.</p>
+							<nvd3-line-chart
+						    	data="perSequenceQualityScores"
+						        id="perSequenceQualityScoresId"
+						        xAxisTickFormat="xAxisTickFormatFunction()"
+						        yAxisTickFormat="yAxisTickFormatFunction()"
+						        width="800"
+						        height="500"
+						        margin={'left':80,'top':20,'bottom':40,'right':0}
+						        showXAxis="true"
+						        showYAxis="true"
+						        showLegend="true"
+						        interactive="true">
+						        	<svg></svg>
+						    </nvd3-line-chart>
+						    <p>If a significant proportion of the sequences in a run have overall low quality then this could indicate some kind of systematic problem - possibly with just part of the run (for example one end of a flowcell).</p>
 				    </tab>
 				    <tab>
-				    	<tab-heading>
-					        <i class="icon-ok-circle"></i>Seq content
-					    </tab-heading>
+				    	<tab-heading><i class="icon-ok-circle"></i>Seq content</tab-heading>
+				    	<h6>Per Base Sequence Content</h6>
+				    	<p>Per Base Sequence Content plots out the proportion of each base position in a file for which each of the four normal DNA bases has been called.</p>
+				    	
+				    	<nvd3-line-chart
+						    	data="perBaseSequenceContent"
+						        id="perBaseSequenceContentID"
+						        xAxisTickFormat="xAxisTickFormatFunction()"
+						        yAxisTickFormat="yAxisTickFormatFunction()"
+						        width="800"
+						        height="500"
+						        margin={'left':80,'top':20,'bottom':40,'right':0}
+						        showXAxis="true"
+						        showYAxis="true"
+						        showLegend="true"
+						        interactive="true"
+						        x="xFunction()">
+						        	<svg></svg>
+						    </nvd3-line-chart>
+				    	
+				    	
+				    	<p>In a random library you would expect that there would be little to no difference between the different bases of a sequence run, so the lines in this plot should run parallel with each other. The relative amount of each base should reflect the overall amount of these bases in your genome, but in any case they should not be hugely imbalanced from each other.</p>
+				    	<p>If you see strong biases which change in different bases then this usually indicates an overrepresented sequence which is contaminating your library. A bias which is consistent across all bases either indicates that the original library was sequence biased, or that there was a systematic problem during the sequencing of the library.</p>
 				    </tab>
 					<tab>
 				    	<tab-heading>
@@ -61,5 +94,17 @@
 				    </tab>
 				</tabset>
 			</div>
+		<div class="span3">
+			<div class="testimonial">
+				<p class="text"><i class="icon-pushpin icon-48"></i>In this report you can check the quality of the sequence obtained. The analysis is performed using the FastQC software. FastQC aims to provide a simple way to do some quality control checks on raw sequence data coming from high throughput sequencing pipelines. It provides a modular set of analyses which you can use to give a quick impression of whether your data has any problems of which you should be aware before doing any further analysis.</p>
+				<div class="author">
+					<img src="img/dummies/testimonial-author1.png" class="img-circle bordered" alt="">
+					<p class="name">
+						Helpdesk
+					</p>
+					<span class="info">DCC</span>
+				</div>
+			</div>
 		</div>
 	</div>
+</div>

@@ -1,6 +1,5 @@
-dataportal.controller('OmimsCtrl', ['Global','$scope','$http','$templateCache','filterFilter', function (Global,$scope,$http,$templateCache,filterFilter) {
+dataportal.controller('OmimsCtrl', ['Global','$scope','$rootScope','$http','$templateCache','filterFilter', function (Global,$scope,$rootScope,$http,$templateCache,filterFilter) {
     
-	$scope.checkedOmims = Global.checkedOmims;
 	$scope.omims = [];
 
     $scope.getOmims = function() {
@@ -9,5 +8,11 @@ dataportal.controller('OmimsCtrl', ['Global','$scope','$http','$templateCache','
 							];
         
     };
+    
+     $scope.setItem = function(item) {
+
+  		Global.checkedOmims = [item];
+  		$rootScope.$emit('filtersUpdated');
+  	};
 
 }]);

@@ -11,6 +11,7 @@ dataportal.controller('InstitutionsCtrl', ['Global','$scope','$http','$templateC
 							   {'shortname':'CNAG','fullname':'Fundacio Privada Parc Cientific de Barcelona'},
 							   {'shortname':'AMU','fullname':'Iniversite D\'aix Marseille'},
 							   {'shortname':'CNIO','fullname':'Centro Nacional de Investigaciones Oncológicas'},
+							   {'shortname':'EBI','fullname':'European Bioinformatics Institute'},
 
 								
 								];

@@ -44,8 +44,43 @@ li p.text{margin-bottom: 0px !important;}
   stroke: #ccc;
 }
 
-#perBaseQuality rect.box{fill:yellow;}
+#perBaseQuality rect.box{fill:#fcf8e3;}
 #perBaseQuality line.median{stroke:red;}
 #inner-headline.patients{background: url('/img/patients.jpg');}
 #inner-headline.analyses{background: url('/img/analyses.jpg');}
+#inner-headline.analyses h2,#inner-headline.analyses .breadcrumb li,#inner-headline.analyses .breadcrumb a,#inner-headline.analyses .breadcrumb i{color:#353535}
 #inner-headline.files{background: url('/img/files.jpg');}
+#inner-headline{
+	border-top:1px solid #eee;
+	-moz-transition: opacity .6s ease-in-out;
+	-o-transition: opacity .6s ease-in-out;
+	-webkit-transition: opacity .6s ease-in-out;
+	transition: opacity .6s ease-in-out;
+	z-index: 2;
+	-moz-box-shadow: inset 0 5px 8px -5px rgba(0,0,0,.06);
+	-webkit-box-shadow: inset 0 5px 8px -5px rgba(0,0,0,.06);
+	box-shadow: inset 0 5px 8px -5px rgba(0,0,0,.06);
+	line-height: 0;
+	
+	
+}
+#inner-headline h2,#inner-headline a{text-shadow: 1px 1px 1px rgba(0,0,0,.7);}
+aside accordion .widget {
+margin-bottom: 20px;
+margin-top: 20px;
+}
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}

@@ -22,6 +22,16 @@ dataportal.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
       templateUrl: "partials/patients.html",
       controller: "PatientsCtrl"
     })
+    .state('patients_view', {
+      url: "/search/patients/view",
+      templateUrl: "partials/patients_view.html",
+      controller: "PatientsCtrl"
+    })
+    .state('patients_view.donor_report', {
+      url: "/donor_report/:donorId",
+      templateUrl: "partials/patients_view.donor_report.html",
+      controller: "PatientsCtrl"
+    })
     .state('experiments', {
       url: "/search/experiments",
       templateUrl: "partials/experiments.html",

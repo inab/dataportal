@@ -12,7 +12,9 @@ dataportal.controller('FileTypesCtrl', ['Global','$scope','$http','$templateCach
     $scope.getFileTypes = function() {
 		
 		$scope.fileTypes = [{'category':'primary_analyses','experimentTypes':['dna_seq','ran_seq','chip_seq'],'name':'FastQ','description':'The fastq format was developed to provide a convenient way of storing the sequence and the quality scores in the same file. '},
-							{'category':'secondary_analyses','experimentTypes':['dna_seq','ran_seq','chip_seq'],'name':'BAM','description':'The fastq format was developed to provide a convenient way of storing the sequence and the quality scores in the same file. '}
+							{'category':'secondary_analyses','experimentTypes':['dna_seq','ran_seq','chip_seq'],'name':'BAM','description':'The fastq format was developed to provide a convenient way of storing the sequence and the quality scores in the same file. '},
+							{'category':'secondary_analyses','experimentTypes':['dna_seq','ran_seq','chip_seq'],'name':'VCF','description':'The fastq format was developed to provide a convenient way of storing the sequence and the quality scores in the same file. '},
+							{'category':'secondary_analyses','experimentTypes':['dna_seq','ran_seq','chip_seq'],'name':'CSV','description':'The fastq format was developed to provide a convenient way of storing the sequence and the quality scores in the same file. '}
 							
 							];
         

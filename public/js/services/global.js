@@ -11,13 +11,14 @@ dataportal.factory("Global", [
             checkedFileTypes:[],
             checkedInstitutions:[],
             checkedGenders:[],
+            checkedOrphanets:[],
+			checkedOmims:[],
+			checkedIcd10s:[],
+			checkedChromosomes:[],
+			checkedGeneTypes:[],
 			checkedVariantTypes:[],
 			checkedVariantConsequences:[],
-			checkedVariantVerificationStatuses:[],
-			checkedChromosomes:[],
-			checkedOrphanets:[],
-			checkedOmims:[],
-			checkedIcd10s:[]
+			checkedVariantVerificationStatuses:[]
         };
 
         return _this._data;

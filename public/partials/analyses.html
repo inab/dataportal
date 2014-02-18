@@ -75,7 +75,8 @@
 				</aside>
 			</div>
 			<div class="span9">
-				<div class="testimonial">
+				<!--
+<div class="testimonial">
 					<p class="text"><i class="icon-pushpin icon-48"></i>In this section you can see all the analyses carried out within the platform. We have divided the analyses in three main categories to facilitate the navigation, examples of the analyses within each category are provided below:</p>
 					<ul>
 						<li><p class="text">Primary analyses</p></li>
@@ -110,7 +111,7 @@
 						<span class="info">DCC</span>
 					</div>
 				</div>
-				<br>
+-->
 				<tabset>
 				    <tab data-ng-controller="AnalysesCtrl" data-ng-init="all()">
 				    	<tab-heading>
@@ -136,7 +137,7 @@
 									<td>{{a.analysisType}}</td>
 									<td>{{a.submittedBy}}</td>
 									<td>{{a.submittedDay}}</td>
-									<td><a href="index.html#/search/analyses/view/{{a.analysisType}}/{{a.id}}"><i class="icon-bar-chart"></i></a></td>
+									<td><a href="index.html#/search/analyses/view/{{a.analysisType}}/{{a.id}}" ><i class="icon-bar-chart"></i></a></td>
 								</tr>
 							</tbody>
 						</table>
@@ -164,9 +165,9 @@
 							</div>
 						    <div class="span2">
 						    	<h5>Experiments</h5>
-							   <div ng-controller="AnalysesCtrl">
+							   <div ng-controller="AnalysesCtrl" data-ng-init="getanalysistypes()">
 									<nvd3-pie-chart
-								    	data="pieData"
+								    	data="analysisStats"
 								        id="other"
 								        width="150"
 								        height="150"
