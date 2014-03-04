@@ -1,6 +1,4 @@
 module.exports = {
-    db: "mongodb://localhost/dataportal-test",
-    port: 3001,
     app: {
         name: "Dataportal. An integrated platform connecting databases, registries, biobanks and clinical bioinformatics"
     },

@@ -24,6 +24,58 @@ def bulk(data):
 # 		if not stat['index']['ok']:
 # 			print json.dumps(stat)
 	return resp
+	
+def annotateEffects(doc,record):
+	""" Annotate variants effect"""	
+	
+	doc['Eff'] 	= []
+	effects 	= record.INFO['EFF']
+	genes 		= []
+	locations 	= []
+	eff = {}
+	for e in effects:
+		m = re.search(r"(.*)\((.*)\)",e)
+		if not m.group(1) in eff:
+			eff[m.group(1)] = []
+			locations.append(m.group(1))
+	
+		#efect_impact,functional_class,codon_change,aminoacid_change,gene_name,gene_biotype,coding,transcript,exon
+		values = m.group(2).split('|')
+		tmp = {}
+		if values[0]:
+			tmp['impact'] 			= values[0]
+		if values[1]:
+			tmp['fclass'] 			= values[1]
+		if values[2]:
+			tmp['codon_change'] 	= values[2]
+		if values[3]:
+			tmp['aa_change'] 		= values[3]
+		if values[4]:
+			tmp['gene_name'] 		= values[4]
+			genes.append(values[4])
+		if values[5]:
+			tmp['gene_biotype'] 	= values[5]
+		if values[6]:
+			tmp['coding'] 			= values[6]
+		if values[7]:
+			tmp['transcript'] 		= values[7]
+		if values[8]:
+			tmp['exon'] 			= values[8]
+		
+		eff[m.group(1)].append(tmp)
+		
+	unique_genes =  set(genes)
+	if len(unique_genes):
+		doc['Genes'] = list(unique_genes)	
+		
+		
+	unique_locations =  set(locations)
+	if len(unique_locations):
+		doc['Locations'] = list(unique_locations)			
+				
+	doc['Eff'].append(eff)
+	return 0
+
 
 def main(fileName):
 
@@ -31,6 +83,10 @@ def main(fileName):
 	vcf_reader = vcf.Reader(open(fileName, 'r'))
 	
 	for record in vcf_reader:
+	
+		#check filters
+		if len(record.FILTER):
+			continue
 	
 		doc = {}
 		
@@ -43,64 +99,51 @@ def main(fileName):
 		else:
 			chromosome = record.CHROM[3:]	
 
-		# create information for the current donor
+		# Donor
 		alt = re.sub(r'[\[,\]]','',str(record.ALT))	
 		donor = {}
 		donor[DONOR] = {}
 		donor[DONOR]['Qua']	= record.QUAL;	
-		#Info
-		#donor[DONOR]['INFO'] = record.INFO;
+		
+		# Info
 		donor[DONOR]['Dp4'] = record.INFO['DP4'];
-		
-		
-		# annotate effects
-		doc['Eff'] = []
-		effects = record.INFO['EFF']
-		#print effects[0]
-		eff = {}
-		for e in effects:
-			m = re.search(r"(.*)\((.*)\)",e)
-			if not m.group(1) in eff:
-				eff[m.group(1)] = []
-		
-			#efect_impact,functional_class,codon_change,aminoacid_change,gene_name,gene_biotype,coding,transcript,exon
-			values = m.group(2).split('|')
-			tmp = {}
-			if values[0]:
-				tmp['impact'] 			= values[0]
-			if values[1]:
-				tmp['fclass'] 			= values[1]
-			if values[2]:
-				tmp['codon_change'] 	= values[2]
-			if values[3]:
-				tmp['aa_change'] 		= values[3]
-			if values[4]:
-				tmp['gene_name'] 		= values[4]
-			if values[5]:
-				tmp['gene_biotype'] 	= values[5]
-			if values[6]:
-				tmp['coding'] 			= values[6]
-			if values[7]:
-				tmp['transcript'] 		= values[7]
-			if values[8]:
-				tmp['exon'] 			= values[8]
+				
+		# Effects
+		annotateEffects(doc,record)
 			
-			eff[m.group(1)].append(tmp)
-			
-			
-		doc['Eff'].append(eff)
-	
-		
 		# Genotype
 		gen = record.genotype(DONOR).data;
 		donor[DONOR]['GT'] = gen.GT;
-			
-		doc['Chr'] = chromosome
-		doc['Pos'] = record.POS
-		doc['Ref'] = record.REF
-		doc['Alt'] = alt
-		doc['dbSNP'] = record.ID
 		
+		doc['Chr'] 		= int(chromosome)
+		doc['Pos'] 		= int(record.POS)
+		doc['Ref'] 		= record.REF
+		doc['Alt'] 		= alt
+		if 'INDEL' in record.INFO:
+			doc['Indel'] = 1 
+		
+	
+		# SNPs and damage 
+		snp 			= {}
+		if (record.ID):
+			vcf_id 		= record.ID.split(";")
+			for v in vcf_id:
+				if re.match("RS=",v):
+					snp['Rs']		= v[3:]
+				elif re.match("dbSNPBuildID=",v):	
+					snp['Build']	= v[13:] 
+				elif re.match("GMAF=",v):
+					snp['Gmaf']	= float(v[5:])	
+				elif re.match("SIFT_score=",v) and  v[11:] != 'NA' :	
+					doc['Sift'] = float(v[11:])
+				elif re.match("Polyphen2_score=",v) and  v[16:] != 'NA':
+					doc['Poly2'] = float(v[16:])	
+				elif re.match("LRT_pred=",v):	
+					doc['Ltr'] = v[9:]	
+				elif re.match("MutationTaster_pred=",v):	
+					doc['MutTaster'] = v[20:]		
+			
+			doc['dbSNP'] 	= snp
 
 		doc['Donors'] = [donor]
 		

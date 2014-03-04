@@ -1,14 +1,30 @@
 <accordion close-others="oneAtATime">
+ <accordion-group is-open="isopen0">
+	<accordion-heading>Chromosome positions <i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen0, 'icon-chevron-right': !isopen0}"></i></accordion-heading>
+	<div class="widget" ng-controller="GenesCtrl" data-ng-init="getChromosomes()">
+		<div class="row-fluid">
+			<div class="span4">
+				<select class="span12" ng-model="chr" active-filter="'chr'">
+					<option value="0" selected>Select</option>
+					<option ng-repeat="c in chromosomes">{{c.name}}</option>
+				</select>
+			</div>
+			<div class="span4">
+				<input class="span12" type="text" placeholder="Start" ng-model="chr_start" active-filter="'chr_start'" />
+			</div>
+			<div class="span4">
+				<input class="span12" type="text" placeholder="End" ng-model="chr_end" active-filter="'chr_end'" />
+			</div>
+		</div>
+	</div>
+</accordion-group>
+<accordion close-others="oneAtATime">
  <accordion-group is-open="isopen1">
 	<accordion-heading>Affected Genes <i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen1, 'icon-chevron-right': !isopen1}"></i></accordion-heading>
-    <div class="widget" ng-controller="PatientsCtrl">
-		<input type="text" placeholder="Gene ID" />
-	</div>
-	<div class="widget" ng-controller="GenesCtrl" data-ng-init="getChromosomes()">
-		<h5 class="widgetheading">Chromosome</h5>
-		<div class="" ng-repeat="c in chromosomes">
-			<input type='checkbox' value="{{c.name}}" check-list="checkedChromosomes"> {{c.name}}
-		</div>
+    <div class="widget" ng-controller="GenesCtrl">
+   		<h6 class="widgetheading">Genes</h6>
+   		<label>Gene name</label>	
+		<input type="text" placeholder="e.g.:OTUD3" ng-model="search_gene_id" active-filter="'search_gene_id'" />
 	</div>
 	<div class="widget" ng-controller="GenesCtrl" data-ng-init="getGeneTypes()">
 		<h5 class="widgetheading">Type</h5>
@@ -19,24 +35,25 @@
  </accordion-group>
  <accordion-group is-open="isopen2">
 	<accordion-heading>Variants <i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen2, 'icon-chevron-right': !isopen2}"></i></accordion-heading>
-	<div class="widget" ng-controller="PatientsCtrl">
-   		<h6 class="widgetheading">SNPs</h6>	
-		<input type="text" placeholder="DbSNP ID" />
-	</div>
-	<div class="widget" ng-controller="VariantsCtrl" data-ng-init="getVariantTypes()">
-		<h5 class="widgetheading">Types</h5>
-		<div class="" ng-repeat="vt in variantTypes">
-			<div class="pull-left">
-				<input type='checkbox' value="{{vt.machine_name}}" check-list="checkedVariantTypes"> {{vt.name}}
-			</div>
-			<div class="clearfix"></div>
-		</div>
+	<div class="widget" ng-controller="VariantsCtrl" ng-init="init()">
+   		<h6 class="widgetheading">SNPs</h6>
+   		<label>DbSNP ID</label>	
+		<input type="text" placeholder="e.g.:rs7522419" ng-model="search_dbsnp_id" active-filter="'search_dbsnp_id'" />
 	</div>
 	<div class="widget" ng-controller="VariantsCtrl" data-ng-init="getVariantConsequences()">
 		<h5 class="widgetheading">Consequence</h5>
 		<div class="" ng-repeat="vc in variantConsequences">
 			<div class="pull-left">
 				<input type='checkbox' value="{{vc.machine_name}}" check-list="checkedVariantConsequences"> {{vc.name}}
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="widget" ng-controller="VariantsCtrl" data-ng-init="getVariantTypes()">
+		<h5 class="widgetheading">Types</h5>
+		<div class="" ng-repeat="vt in variantTypes">
+			<div class="pull-left">
+				<input type='checkbox' value="{{vt.machine_name}}" check-list="checkedVariantTypes"> {{vt.name}}
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -50,9 +67,5 @@
 			<div class="clearfix"></div>
 		</div>
 	</div>
- </accordion-group> 
- <accordion-group is-open="isopen3">
-	<accordion-heading>Experiments available <i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen3, 'icon-chevron-right': !isopen3}"></i></accordion-heading>
-	
  </accordion-group> 
 </accordion>

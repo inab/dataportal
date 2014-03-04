@@ -48,6 +48,7 @@ li p.text{margin-bottom: 0px !important;}
 #perBaseQuality line.median{stroke:red;}
 #inner-headline.patients{background: url('/img/patients.jpg');}
 #inner-headline.analyses{background: url('/img/analyses.jpg');}
+#inner-headline.samples{background: url('/img/samples.jpg');}
 #inner-headline.analyses h2,#inner-headline.analyses .breadcrumb li,#inner-headline.analyses .breadcrumb a,#inner-headline.analyses .breadcrumb i{color:#353535}
 #inner-headline.files{background: url('/img/files.jpg');}
 #inner-headline{
@@ -83,4 +84,9 @@ margin-top: 20px;
   fill: none;
   stroke: #ccc;
   stroke-width: 1.5px;
+}
+.btn-blue {
+border: 1px solid #3d5da1;
+color: #fff;
+background: #3d5da1;
 }

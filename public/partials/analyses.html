@@ -75,8 +75,7 @@
 				</aside>
 			</div>
 			<div class="span9">
-				<!--
-<div class="testimonial">
+				<div class="testimonial">
 					<p class="text"><i class="icon-pushpin icon-48"></i>In this section you can see all the analyses carried out within the platform. We have divided the analyses in three main categories to facilitate the navigation, examples of the analyses within each category are provided below:</p>
 					<ul>
 						<li><p class="text">Primary analyses</p></li>
@@ -111,7 +110,6 @@
 						<span class="info">DCC</span>
 					</div>
 				</div>
--->
 				<tabset>
 				    <tab data-ng-controller="AnalysesCtrl" data-ng-init="all()">
 				    	<tab-heading>
@@ -135,7 +133,7 @@
 									<td>{{a.category}}</td>
 									<td>{{a.experimentType}}</td>
 									<td>{{a.analysisType}}</td>
-									<td>{{a.submittedBy}}</td>
+									<td>{{a.institution}}</td>
 									<td>{{a.submittedDay}}</td>
 									<td><a href="index.html#/search/analyses/view/{{a.analysisType}}/{{a.id}}" ><i class="icon-bar-chart"></i></a></td>
 								</tr>

@@ -1,9 +1,31 @@
 dataportal.controller('VariantsCtrl', ['Global','$scope','$rootScope','$http','$templateCache','variantsFilter', function (Global,$scope,$rootScope,$http,$templateCache,variantsFilter) {
     
+	$scope.search_dbsnp_id						= Global.search_dbsnp_id;
+
 	$scope.checkedVariantTypes 					= Global.checkedVariantTypes;
 	$scope.checkedVariantConsequences 			= Global.checkedVariantConsequences;
 	$scope.checkedVariantVerificationStatuses 	= Global.checkedVariantVerificationStatuses;
 	$scope.filteredVariants						= [];
+
+	$scope.init =  function(){
+		
+		/* Set default values */		
+
+	}
+
+	$scope.getVariantConsequences = function() {
+		
+		$scope.variantConsequences = [{'name':'Intergenic','machine_name':'INTERGENIC','description':''},
+									{'name':'Transcript','machine_name':'TRANSCRIPT','description':''},
+									{'name':'Intron','machine_name':'INTRON','description':''},
+									{'name':'Non synonymous coding','machine_name':'NON_SYNONYMOUS_CODING','description':''},
+									{'name':'Downstream','machine_name':'DOWNSTREAM','description':''},
+									{'name':'Upstream','machine_name':'UPSTREAM','description':''},
+									{'name':'UTR 3\'','machine_name':'UTR_3_PRIME','description':''},
+									{'name':'UTR 5\'','machine_name':'UTR_5_PRIME','description':''}
+							   
+							  ];
+   };
 
     $scope.getVariantTypes = function() {
 		
@@ -14,7 +36,8 @@ dataportal.controller('VariantsCtrl', ['Global','$scope','$rootScope','$http','$
 							  ];
    };
    
-   $scope.getVariantConsequences = function() {
+   /*
+$scope.getVariantConsequences = function() {
 		
 		$scope.variantConsequences = [{'name':'Frameshift','machine_name':'frameshift','description':''},
 							   {'name':'Missense','machine_name':'missense','description':''},
@@ -33,6 +56,7 @@ dataportal.controller('VariantsCtrl', ['Global','$scope','$rootScope','$http','$
 							   {'name':'Intragenic','machine_name':'intragenic','description':''},
 							  ];
    };
+*/
    
    $scope.getVariantVerificationStatuses = function() {
 		

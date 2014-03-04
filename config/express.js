@@ -2,12 +2,11 @@
  * Module dependencies.
  */
 var express = require('express'),
-    mongoStore = require('connect-mongo')(express),
     flash = require('connect-flash'),
     helpers = require('view-helpers'),
     config = require('./config');
 
-module.exports = function(app, passport, db) {
+module.exports = function(app, passport) {
     app.set('showStackError', true);    
     
     //Prettify HTML
@@ -53,13 +52,15 @@ module.exports = function(app, passport, db) {
         app.use(express.methodOverride());
 
         //express/mongo session storage
-        app.use(express.session({
+        /*
+app.use(express.session({
             secret: 'dataportal',
             store: new mongoStore({
                 db: db.connection.db,
                 collection: 'sessions'
             })
         }));
+*/
 
         //connect flash for flash messages
         app.use(flash());

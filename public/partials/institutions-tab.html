@@ -1,13 +1,13 @@
 <accordion close-others="oneAtATime">
  <accordion-group is-open="isopen1">
 	<accordion-heading>RD-connect Donor IDs<i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen1, 'icon-chevron-right': !isopen1}"></i></accordion-heading>
-    <div class="widget" ng-controller="PatientsCtrl">
+    <div class="widget">
 		<input type="text" placeholder="RD-connect Donor ID" />
 		<p><a href="#uploadDonorList" data-toggle="modal"><i class=" icon-upload-alt"></i> Upload list</a></p>
     </div>
  </accordion-group>
   <accordion-group is-open="isopen2">
-	<accordion-heading>Registries<i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen2, 'icon-chevron-right': !isopen2}"></i></accordion-heading>
+	<accordion-heading>Research centres<i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen2, 'icon-chevron-right': !isopen2}"></i></accordion-heading>
      <div class="widget" ng-controller="InstitutionsCtrl" data-ng-init="getinstitutions()">
 		<input type="text" placeholder="Institution Name" />
 		<div class="" ng-repeat="i in institutions">
@@ -19,7 +19,7 @@
 	</div>
  </accordion-group>
  <accordion-group is-open="isopen3">
-	<accordion-heading>Research centres<i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen3, 'icon-chevron-right': !isopen3}"></i></accordion-heading>
+	<accordion-heading>Registries<i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen3, 'icon-chevron-right': !isopen3}"></i></accordion-heading>
     <div class="widget">
 		<input type="text" placeholder="Registry name" />
 	</div>

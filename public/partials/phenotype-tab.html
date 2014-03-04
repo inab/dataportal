@@ -1,7 +1,8 @@
 <accordion close-others="oneAtATime">
  <accordion-group is-open="isopen1">
-	<accordion-heading>Sex <i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen1, 'icon-chevron-right': !isopen1}"></i></accordion-heading>
-    <div class="widget" ng-controller="PatientsCtrl" data-ng-init="getgenders()">
+	<accordion-heading>Basics <i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen1, 'icon-chevron-right': !isopen1}"></i></accordion-heading>
+    <label>Sex</label>
+    <div class="widget" data-ng-init="getgenders()">
 		<span ng-repeat="g in genders">
 			<input type='checkbox' value="{{g.name}}" check-list="checkedGenders"> {{g.name}}<br />
 		</span>
@@ -23,8 +24,13 @@
  </accordion-group>
   <accordion-group is-open="isopen3">
 	<accordion-heading>Clinical symptoms <i style="float:right;margin-top:5px;" ng-class="{'icon-chevron-down': isopen3, 'icon-chevron-right': !isopen3}"></i></accordion-heading>
-    <div class="widget" ng-controller="PatientsCtrl">
-		<input type='checkbox'> This patient is clinically normal
+    <div class="widget" style="height:500px;">
+		<div style="margin-bottom:10px;">
+			<input type='checkbox'> This patient is clinically normal
+		</div>
+		<div ng-controller="HposCtrl" data-ng-init="getHpos()">	
+			<input type="text" placeholder="HPO condition" ng-model="Hposes" typeahead-on-select="setItem($item)" typeahead-loading="loadingLocations" typeahead="hpo._source.name[0] for hpo in getHpos($viewValue)" /><i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+   		</div>
 	</div>
  </accordion-group>
 </accordion>

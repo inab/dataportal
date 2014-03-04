@@ -43,6 +43,25 @@ dataportal.directive('dropdown', function() {
 		}
 	};
 });
+
+
+dataportal.directive('activeFilter',['Global','$rootScope', function(Global,$rootScope) {
+  return {
+    scope: {
+   	  property: '=activeFilter',
+      model: 	'=ngModel',
+    },
+    link: function(scope, elem, attrs) {
+    	elem.on('change', function() {
+    		Global[scope.property] = scope.model;
+	      	$rootScope.$emit('filtersUpdated');
+		});
+    }
+   } 
+    
+}]);
+
+
 dataportal.directive('checkList',['$rootScope', function($rootScope) {
   return {
     scope: {
@@ -52,16 +71,22 @@ dataportal.directive('checkList',['$rootScope', function($rootScope) {
     link: function(scope, elem, attrs) {
       
       var handler = function(setup) {
-        $rootScope.$emit('filtersUpdated');
+        
         var checked = elem.prop('checked');
         var index = scope.list.indexOf(scope.value);
 
         if (checked && index == -1) {
           if (setup) elem.prop('checked', false);
-          else scope.list.push(scope.value);
+          else {
+          	scope.list.push(scope.value);
+		  	$rootScope.$emit('filtersUpdated');
+          }
         } else if (!checked && index != -1) {
           if (setup) elem.prop('checked', true);
-          else scope.list.splice(index, 1);
+          else {
+          	scope.list.splice(index, 1);
+          	$rootScope.$emit('filtersUpdated');
+          }	
         }
       };
       

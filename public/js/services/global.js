@@ -14,11 +14,15 @@ dataportal.factory("Global", [
             checkedOrphanets:[],
 			checkedOmims:[],
 			checkedIcd10s:[],
-			checkedChromosomes:[],
 			checkedGeneTypes:[],
 			checkedVariantTypes:[],
 			checkedVariantConsequences:[],
-			checkedVariantVerificationStatuses:[]
+			checkedVariantVerificationStatuses:[],
+			search_dbsnp_id:'',
+			search_gene_id:'',
+			chr:0,
+			chr_start:0,
+			chr_end:250000000
         };
 
         return _this._data;

@@ -1,9 +1,6 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-	Experiment = mongoose.model('Experiment'),
-	_ = require('underscore');
 
 /**
  * Find article by id

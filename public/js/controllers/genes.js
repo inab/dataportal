@@ -1,9 +1,19 @@
-dataportal.controller('GenesCtrl', ['Global','$scope','$rootScope','$http','$templateCache','genesFilter', function (Global,$scope,$rootScope,$http,$templateCache,genesFilter) {
+dataportal.controller('GenesCtrl', ['Global','$scope','$rootScope','$http','$templateCache','genesFilter','ejsResource', function (Global,$scope,$rootScope,$http,$templateCache,genesFilter,ejsResource) {
     
-	$scope.checkedChromosomes 	= Global.checkedChromosomes;
+    $scope.search_gene_id		= Global.search_gene_id;
+    $scope.chr					= Global.chr;
+	$scope.chr_start			= Global.chr_start;
+	$scope.chr_end				= Global.chr_end;
+
 	$scope.checkedGeneTypes 	= Global.checkedGeneTypes;
 	$scope.genes 	  			= [];
-    $scope.filteredGenes 	  	= [];					
+    $scope.filteredGenes 	  	= [];	
+    
+    var ejs 	= ejsResource('http://localhost:9200');
+    var client 	= ejs.Request()
+			         .indices('genes')
+			         .types('gene')
+			         .size(50);				
 
 
     $scope.getChromosomes = function() {
@@ -67,4 +77,22 @@ dataportal.controller('GenesCtrl', ['Global','$scope','$rootScope','$http','$tem
 								];
         
     };
+    
+    $scope.getBackendGenes = function() {
+    	
+    	var oQuery 	= ejs.QueryStringQuery();
+	
+    	query =  ejs.BoolQuery()
+    				.must(oQuery.query('*'));
+
+		//client.query(oQuery.query(query))
+		client.query(query)
+        .doSearch(function(r){
+			    $scope.genes = r.hits.hits;
+        },function(){});
+		
+		
+    }
+    
+    
 }]);

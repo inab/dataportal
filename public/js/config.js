@@ -17,20 +17,20 @@ dataportal.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
       url: "/home",
       templateUrl: "partials/home.html"
     })
-    .state('patients', {
-      url: "/search/patients",
-      templateUrl: "partials/patients.html",
-      controller: "PatientsCtrl"
+    .state('donors', {
+      url: "/search/donors",
+      templateUrl: "partials/donors.html",
+      controller: "DonorsResultsCtrl"
     })
-    .state('patients_view', {
-      url: "/search/patients/view",
-      templateUrl: "partials/patients_view.html",
-      controller: "PatientsCtrl"
+    .state('donors_view', {
+      url: "/search/donors/view",
+      templateUrl: "partials/donors_view.html",
+      controller: "DonorsResultsCtrl"
     })
-    .state('patients_view.donor_report', {
+    .state('donors_view.donor_report', {
       url: "/donor_report/:donorId",
-      templateUrl: "partials/patients_view.donor_report.html",
-      controller: "PatientsCtrl"
+      templateUrl: "partials/donors_view.donor_report.html",
+      controller: "DonorsResultsCtrl"
     })
     .state('experiments', {
       url: "/search/experiments",
@@ -56,5 +56,10 @@ dataportal.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
       url: "/dnaseq_variants_annotations/:analysisId",
       templateUrl: "partials/analysis_view.dnaseq_variants_annotations.html",
       controller: "AnalysesCtrl"
+    })
+    .state('samples', {
+      url: "/search/samples",
+      templateUrl: "partials/samples.html",
+      controller: "DonorsResultsCtrl"
     })
 });

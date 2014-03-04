@@ -1,6 +1,4 @@
 {
-    "db": "mongodb://localhost/dataportal-travis",
-    "port": 3001,
     "app": {
         "name": "Dataportal. An integrated platform connecting databases, registries, biobanks and clinical bioinformatics"
     },
