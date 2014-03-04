@@ -1,0 +1,274 @@
+<div id="uploadDonorList" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="uploadDonorListLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h4 id="uploadDonorListLabel">Donors</h4>
+	</div>
+	<div class="modal-body">
+		<form class="form-horizontal">
+			<div class="control-group">
+				<label class="control-label" for="donorList">Donor list</label>
+				<div class="controls">
+					<textarea  type="text" id="donorList" placeholder="Paste your list one patient per line" class="input-xlarge" rows="10"></textarea>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<button type="submit" class="btn">Save</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<section id="inner-headline" class="patients">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span6">
+				<div class="inner-heading">
+					<h2><i class="icon-hospital"></i> Search <strong>Donors</strong></h2>
+				</div>
+			</div>
+			<div class="span6">
+				<ul class="breadcrumb">
+					<li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+					<li><a>Search</a><i class="icon-angle-right"></i></li>
+					<li class="active">Donors</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="content">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span3">
+				<aside class="left-sidebar">
+					<h4>Filter by</h4>
+					 <tabset>
+						 <tab>
+					    	<tab-heading><a href="#" tooltip="Institution"><img src="/img/icon_26108.svg" style="height:20px;"></a></tab-heading>
+						    <h6>Institution</h6>
+						     <div ng-include="'partials/institutions-tab.html'"></div>
+						 </tab>
+						 <tab>
+					    	<tab-heading><a href="#" tooltip="Phenotype"><img src="/img/icon_20445.svg" style="height:20px;"></a></tab-heading>
+					    	<h6>Phenotype</h6>
+						    <div ng-include="'partials/phenotype-tab.html'"></div>
+						 </tab>
+						 <tab>
+						 	 <tab-heading><a href="#" tooltip="Genomics"><img src="/img/icon_12357.svg" style="height:20px;"></a></tab-heading>
+						 	 <h6>Genomics</h6>
+						 	 <div ng-include="'partials/genomics-tab.html'"></div>
+						 </tab>
+						  <tab>
+						 	 <tab-heading><a href="#" tooltip="Epigenetics"><img src="/img/icon_9168.svg" style="height:20px;"></a></tab-heading>
+						 	 <h6>Epigenetics</h6>
+						 	  <div ng-include="'partials/epigenomics-tab.html'"></div>
+						 </tab>
+						  <tab>
+						 	 <tab-heading><a href="#" tooltip="Proteomics"><img src="/img/icon_25353.svg" style="height:20px;"></a></tab-heading>
+						 	 <h6>Proteomics</h6>
+						 	 <div>
+							 	 <p>Scheduled for 1Q 2015</p>
+						 	 </div>
+						 </tab>
+						 <tab>
+						 	 <tab-heading><a href="#" tooltip="Metabolomics"><img src="/img/icon_27602.svg" style="height:20px;"></a></tab-heading>
+						 	 <h6>Metabolomics</h6>
+						 	 <div>
+							 	 <p>Scheduled for 1Q 2015</p>
+						 	 </div>
+						 </tab>
+					 </tabset> 
+				</aside>
+			</div>
+			<div class="span9">
+				<h4>Results</h4>
+				<tabset>
+				    <tab data-ng-init="getBackendPatients()">
+				    	<tab-heading>Donors</tab-heading>
+				    	<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Donor ID</th>
+									<th>Institution</th>
+									<th>Data available</th>
+									<th>Gender</th>
+									<th>Maternal ethnicity</th>
+									<th>Paternal ethnicity</th>
+									<th># Variants</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="p in filteredPatients">
+									<td>{{p.id}}</td>
+									<td>{{p.institution}}</td>
+									<td>
+										<a href="#" tooltip="Phenotype"><img src="/img/icon_20445.svg" style="height:15px;"></a>&nbsp;
+										<a href="#" tooltip="Genomics"><img src="/img/icon_12357.svg" style="height:15px;"></a>
+									</td>
+									<td>{{p.gender}}</td>
+									<td>{{p.maternal_ethnicity}}</td>
+									<td>{{p.paternal_ethnicity}}</td>
+									<td>{{p.mutations}}</td>
+									<td><a href="index.html#/search/donors/view/donor_report/{{p.id}}" tooltip="View donor report"><i class="icon-bar-chart"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+				    </tab>
+				    <tab style="background:#3d5da1;" disabled="true">
+				    	<tab-heading style="color:#FFF;">Biological effects <i class="icon-chevron-right"></i></tab-heading> 
+				    	
+				    </tab>
+				    <tab data-ng-init="getBackendVariants()">
+				    	<tab-heading>Genomic Variants</tab-heading>
+				    	<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+									<th style="text-align:center!important;">Change</th>
+									<th colspan="3" style="text-align:center!important;background:#eee;">Quality</th>
+									<th></th>
+									<th colspan="4" style="text-align:center!important;background:#eee;">Consequences</th>
+									<th colspan="2"></th>
+								</tr>
+								<tr>
+									<th>DNA Change</th>
+									<th><a href="#" tooltip="VCF Quality score">VCF Quality</a></th>
+									<th><a href="#" tooltip="CSV list of counts of high-quality reads supporting ref-forward, ref-reverse, alt-for, alt-rev base calls e.g. (10,8,11,6)">DP4</a></th>
+									<th><a href="#" tooltip="dbSNP is a public database of single nucleotide polymorphisms (SNPs)">dbSNP</a></th>
+									<th><a href="#" tooltip="Genotype called	either 0/0 or 0/1 or 1/1 for homozygote reference, heterozygote, homozygote alternative">Genotype</a></th>
+									<th><a href="#" tooltip="SIFT score value based on ensembl55 (http://sift-dna.org/)">SIFT</a></th>
+									<th><a href="#" tooltip="PolyPhen2 score value (http://genetics.bwh.harvard.edu/pph2/)">PolyPhen2</a></th>
+									<th><a href="#" tooltip="Lrt score value">Lrt</a></th>
+									<th>Effects</th>
+									<th>Patients</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="v in variants">
+									<td>
+										<span ng-if="v._source.Indel != 1">
+										chr{{v._source.Chr}}:g.{{v._source.Pos}}{{v._source.Ref}}>{{v._source.Alt}}
+										</span>
+										<span ng-if="v._source.Indel == 1">
+										<a href="#" tooltip="chr{{v._source.Chr}}:g.{{v._source.Pos}}{{v._source.Ref}}>{{v._source.Alt}}">chr{{v._source.Chr}}:g.{{v._source.Pos}} [Indel]</a>
+										</span>
+									</td>
+									<td>{{v._source.Donors[0].NA12877.Qua}}</td>
+									<td>{{v._source.Donors[0].NA12877.Dp4}}</td>
+									<td>{{v._source.dbSNP.Rs}}</td>
+									<td>{{v._source.Donors[0].NA12877.GT}}</td>
+									<td><span ng-if="!v._source.Sift">-</span>{{v._source.Sift}}</td>
+									<td><span ng-if="!v._source.Poly2">-</span>{{v._source.Poly2}}</td>
+									<td><span ng-if="!v._source.Lrt">-</span>{{v._source.Lrt}}</td>
+									<td>
+										<ul style="list-style:none;margin-left:0px;">
+											<li ng-repeat="e in v._source.Eff">
+												<div ng-if="e.INTERGENIC" style="margin-bottom:3px;">
+													<span ng-repeat="v in e.INTERGENIC">
+												    	<a href="#" class="btn btn-small" tooltip="INTERGENIC. Impact: {{v.impact}}">INT</a>
+												    <span>
+												</div>
+												<div ng-if="e.UPSTREAM" style="margin-bottom:3px;">
+													<a href="#" class="btn btn-blue  btn-small" tooltip="UPSTREAM"><i class="icon-arrow-up"></i></a>
+													<span ng-repeat="v in e.UPSTREAM">
+												    	<a href="#" tooltip="Impact: {{v.impact}} Coding: {{v.coding}} Biotype: {{v.gene_biotype}}">{{v.transcript}}</a>,  
+													</span>
+												</div>
+												<div ng-if="e.DOWNSTREAM" style="margin-bottom:3px;">
+													<a href="#" class="btn btn-blue  btn-small" tooltip="DOWNSTREAM"><i class="icon-arrow-down"></i></a>
+													<span ng-repeat="v in e.DOWNSTREAM">
+												    	<a href="#" tooltip="Impact: {{v.impact}} Coding: {{v.coding}} Biotype: {{v.gene_biotype}}">{{v.transcript}}</a>,  
+													</span>
+												</div>
+												<div ng-if="e.TRANSCRIPT" style="margin-bottom:3px;">
+													<a href="#" class="btn btn-blue  btn-small" tooltip="TRANSCRIPT"><i class="icon-reorder"></i></a>
+													<span ng-repeat="v in e.TRANSCRIPT">
+												    	<a href="#" tooltip="Impact: {{v.impact}} Coding: {{v.coding}} Biotype: {{v.gene_biotype}} Gene: {{v.gene_name}}">{{v.transcript}}</a>,   
+													</span>
+												</div>
+												<div ng-if="e.NON_SYNONYMOUS_CODING" style="margin-bottom:3px;">
+													<a href="#" class="btn btn-blue  btn-small" tooltip="NON SYNONYMOUS CODING"><i class="font-icon-expand-horizontal"></i></a>
+													<span ng-repeat="v in e.NON_SYNONYMOUS_CODING">
+												    	<a href="#" tooltip="Impact: {{v.impact}} Coding: {{v.coding}} Biotype: {{v.gene_biotype}} Gene: {{v.gene_name}}">{{v.transcript}}</a>,   
+													</span>
+												</div>
+												<div ng-if="e.INTRON" style="margin-bottom:3px;">
+													<a href="#" class="btn btn-blue  btn-small" tooltip="INTRON"><i class="font-icon-resize-horizontal-2"></i></a>
+													<span ng-repeat="v in e.INTRON">
+												    	<a href="#" tooltip="Impact: {{v.impact}} Coding: {{v.coding}} Biotype: {{v.gene_biotype}} Gene: {{v.gene_name}}">{{v.transcript}}</a>,   
+													</span>
+												</div>
+												<div ng-if="e.EXON" style="margin-bottom:3px;">
+													<a href="#" class="btn btn-blue  btn-small" tooltip="EXON">EX</a>
+													<span ng-repeat="v in e.EXON">
+												    	<a href="#" tooltip="Impact: {{v.impact}} Coding: {{v.coding}} Biotype: {{v.gene_biotype}} Gene: {{v.gene_name}}">{{v.transcript}}</a>,   
+													</span>
+												</div>
+												<div ng-if="e.UTR_3_PRIME" style="margin-bottom:3px;">
+													<a href="#" class="btn btn-blue  btn-small" tooltip="UTR_3_PRIME">UTR3'</a>
+													<span ng-repeat="v in e.UTR_3_PRIME">
+												    	<a href="#" tooltip="Impact: {{v.impact}} Coding: {{v.coding}} Biotype: {{v.gene_biotype}} Gene: {{v.gene_name}}">{{v.transcript}}</a>,   
+													</span>
+												</div>
+												<div ng-if="e.UTR_5_PRIME" style="margin-bottom:3px;">
+													<a href="#" class="btn btn-blue  btn-small" tooltip="UTR_5_PRIME">UTR5'</a>
+													<span ng-repeat="v in e.UTR_5_PRIME">
+												    <a href="#" tooltip="Impact: {{v.impact}} Coding: {{v.coding}} Biotype: {{v.gene_biotype}} Gene: {{v.gene_name}}">{{v.transcript}}</a>, 
+													</span>
+												</div>
+											</li>
+										</ul>
+									
+									</td>
+									<td>2</td>
+									<td><a href="index.html#/search/analyses/view/{{a.analysisType}}/{{a.id}}"><i class="icon-bar-chart"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+				    </tab>
+				    <tab>
+				    	<tab-heading>Enhancers</tab-heading> 
+				    	
+				    </tab>
+				    <tab>
+				    	<tab-heading>Promoters</tab-heading> 
+				    	
+				    </tab>
+				    <tab data-ng-init="getBackendGenes()"  ng-controller="GenesCtrl">
+				    	<tab-heading>Genes</tab-heading> 
+				    	<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Gene ID</th>
+									<th>Chromosome</th>
+									<th>Type</th>
+									<th># Patients</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="g in genes">
+									<td>{{g._source.gene_name}}</td>
+									<td>{{g._source.Chr}}</td>
+									<td>{{g._source.gene_biotype}}</td>
+									<td>{{g.patients}}</td>
+									<td><a href="index.html#/search/analyses/view/{{a.analysisType}}/{{a.id}}"><i class="icon-bar-chart"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+				    </tab>
+				    <tab>
+				    	<tab-heading>Proteins</tab-heading> 
+				    	
+				    </tab>
+				    <tab>
+				    	<tab-heading>Pathways</tab-heading> 
+				    	
+				    </tab>   
+				</tabset>
+			</div>
+		</div>
+	</div>
+</section>
