@@ -20,8 +20,18 @@ Installation
 
 Download [Elasticsearch] (http://www.elasticsearch.org/overview/elkdownloads/) and extract the content in a folder
 
-The run
+Then run
 
 ```
 ./bin/elasticsearch
 ```
+
+Clone this repository and execute the grunt command
+
+```
+git clone https://github.com/inab/dataportal.git
+cd dataportal
+grunt
+```
+
+The application will start on http://localhost:3000
