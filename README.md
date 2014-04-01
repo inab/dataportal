@@ -14,3 +14,14 @@ Wiki
 ----
 
 Please use the wiki pages to add new use cases, one per page. Please document the use case as much as possible before to start asking for pull requests.
+
+Installation
+------------
+
+Download [Elasticsearch] (http://www.elasticsearch.org/overview/elkdownloads/) and extract the content in a folder
+
+The run
+
+```
+./bin/elasticsearch
+```
