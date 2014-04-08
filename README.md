@@ -25,6 +25,7 @@ Then run
 ```
 ./bin/elasticsearch
 ```
+Download and install [Grunt] (http://gruntjs.com/)
 
 Clone this repository and execute the grunt command
 
