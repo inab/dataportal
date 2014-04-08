@@ -41,6 +41,7 @@ npm install -g grunt-cli
 ```
 git clone https://github.com/inab/dataportal.git
 cd dataportal
+npm install grunt-contrib-watch grunt-contrib-jshint grunt-mocha-test grunt-karma grunt-nodemon grunt-concurrent grunt-env
 grunt
 ```
 
