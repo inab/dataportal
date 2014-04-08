@@ -8,7 +8,7 @@ The questions or use cases will be defined previous to the development, in this 
 How to contribute
 -----------------
 
-The master branch will contain horizontal functionalities that are common to all the use cases. Please create a new brach for each new use case you pretend to solve within the system. As an example the branch "Variant annotations" will hold the developments around the genomic variant annotation functionality.
+The `master` branch will contain horizontal functionalities that are common to all the use cases. Please create a new brach for each new use case you pretend to solve within the system. As an example the branch [Variant annotations] (../../tree/variant-annotation) will hold the developments around the genomic variant annotation functionality.
 
 Wiki
 ----
