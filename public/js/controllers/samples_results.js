@@ -27,7 +27,7 @@ dataportal.controller('SamplesResultsCtrl', ['Global','$scope','$rootScope','$ht
 			         .size(50);
 			         
 			         
-	$scope.my_data = [{
+	$scope.cellOnthology = [{
 	  label: 'Haematopoietic Stem Cell',
 	  children: [{label:'Multi Potent Progenitor',
 		  		  children: [{label:'Common Myeloid Progenitor',children:[
@@ -48,15 +48,18 @@ dataportal.controller('SamplesResultsCtrl', ['Global','$scope','$rootScope','$ht
 		  		  						{label:'Basophil'}
 		  		  					]},
 		  		  					{label:'Neutrophil Promyelocyte',children:[
-		  		  						{label:'Neutrophil'}
+		  		  						{label:'Neutrophil',color:'red'}
 		  		  					]},
 		  		  					{label:'Eosinophil Promyelocyte',children:[
 			  		  					{label:'Eosinophil'}
 		  		  					]},
 		  		  					{label:'Promonocyte',children:[
-		  		  						{label:'Monocyte',children:[
-		  		  							{label:'Macrophage'},
-		  		  							{label:'Antigen Presenting Cell'}
+		  		  						{label:'Monocyte',color:'red',children:[
+		  		  							{label:'Macrophage M0',children:[
+		  		  								{label:'Macrophage M1'},
+		  		  								{label:'Macrophage M2'},
+		  		  							]},
+		  		  							{label:'Dendritic Cell'}
 		  		  						]}
 		  		  					]}
 		  		  				]}
@@ -77,35 +80,20 @@ dataportal.controller('SamplesResultsCtrl', ['Global','$scope','$rootScope','$ht
 	  }]
 	}];		         
 
-    $scope.getgenders = function() {
-		
-		$scope.genders = [{'name':'Male'},
-						  {'name':'Female'}
-						 ];
-    };
-    
-    
-    $scope.getCellTypes = function(){
-	    
-	    $scope.cellTypes = [{'name':'Monocytes'},
-	    					{'name':'Neutrophils'},
-	    					{'name':'HSC'},
-	    					{'name':'MEP'},
-	    					{'name':'MPP'},
-	    					{'name':'NK cells'},
-	    					{'name':'B cells'},
-	    					{'name':'Naive B cells'},
-	    					{'name':'Effector memory CD4 T cells'},
-	    					{'name':'Central memory CD4 T cells'},
-	    					{'name':'Tregs'},
-	    					{'name':'CD4+ naive'},
-	    					{'name':'Effector Memory CD8 T cells'},
-	    					{'name':'Central Memory CD8 T cells'},
-	    					{'name':'CD8+ naive'},
-	    					{'name':'Tregs'},
-	    					{'name':'Tregs'}
-	    ];
-    }
+    $scope.samples = [{'donor_id':'C000S5','sex':'Male','cell_type':'Monocytes','tissue':'Peripheral blood'},
+    				  {'donor_id':'C0010K','sex':'Female','cell_type':'Monocytes','tissue':'Peripheral blood'},
+    				  {'donor_id':'C001UY','sex':'Male','cell_type':'Monocytes','tissue':'Peripheral blood'},
+    				  {'donor_id':'C004SQ','sex':'Female','cell_type':'Monocytes','tissue':'Peripheral blood'},
+    				  {'donor_id':'C005PS','sex':'Female','cell_type':'Monocytes','tissue':'Cord blood'},
+    				  {'donor_id':'S000RD','sex':'Male','cell_type':'Monocytes','tissue':'Cord blood'},
+    				  {'donor_id':'C000S5','sex':'Male','cell_type':'Neutrophils','tissue':'Peripheral blood'},
+    				  {'donor_id':'C0010K','sex':'Female','cell_type':'Neutrophils','tissue':'Peripheral blood'},
+    				  {'donor_id':'C0011I','sex':'Female','cell_type':'Neutrophils','tissue':'Peripheral blood'},
+    				  {'donor_id':'C00184','sex':'Male','cell_type':'Neutrophils','tissue':'Cord blood'},
+    				  {'donor_id':'C001UY','sex':'Male','cell_type':'Neutrophils','tissue':'Peripheral blood'},
+    				  {'donor_id':'C004GD','sex':'Female','cell_type':'Neutrophils','tissue':'Cord blood'}
+    				 
+    				 ]
     
    
 }]);

@@ -141,6 +141,7 @@ module.directive('abnTree', function($timeout) {
             level: level,
             branch: branch,
             label: branch.label,
+            color: branch.color,
             tree_icon: tree_icon,
             visible: visible
           });

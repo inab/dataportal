@@ -69,7 +69,8 @@
 						 	 <h6>Epigenetics</h6>
 						 	  <div ng-include="'partials/epigenomics-tab.html'"></div>
 						 </tab>
-						  <tab>
+						 <!--
+ <tab>
 						 	 <tab-heading><a href="#" tooltip="Proteomics"><img src="/img/icon_25353.svg" style="height:20px;"></a></tab-heading>
 						 	 <h6>Proteomics</h6>
 						 	 <div>
@@ -83,6 +84,7 @@
 							 	 <p>Scheduled for 1Q 2015</p>
 						 	 </div>
 						 </tab>
+-->
 						  <tab>
 						 	 <tab-heading><a href="#" tooltip="Metabolomics">QTLs</a></tab-heading>
 						 	 <h6>QTLs</h6>
@@ -96,33 +98,30 @@
 			<div class="span8">
 				<h4>Results</h4>
 				<tabset>
-				    <tab data-ng-init="getBackendPatients()">
+				    <tab data-ng-controller="SamplesResultsCtrl">
 				    	<tab-heading>Samples</tab-heading>
 				    	<table class="table table-striped">
 							<thead>
 								<tr>
 									<th>Donor ID</th>
-									<th>Institution</th>
+									<th>Sex</th>
+									<th>Cell type</th>
+									<th>Tissue</th>
 									<th>Data available</th>
-									<th>Gender</th>
-									<th>Maternal ethnicity</th>
-									<th>Paternal ethnicity</th>
-									<th># Variants</th>
 									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="p in filteredPatients">
-									<td>{{p.id}}</td>
-									<td>{{p.institution}}</td>
+								<tr ng-repeat="s in samples">
+									<td>{{s.donor_id}}</td>
+									<td>{{s.sex}}</td>
+									<td>{{s.tissue}}</td>
+									<td>{{s.cell_type}}</td>
 									<td>
-										<a href="#" tooltip="Phenotype"><img src="/img/icon_20445.svg" style="height:15px;"></a>&nbsp;
-										<a href="#" tooltip="Genomics"><img src="/img/icon_12357.svg" style="height:15px;"></a>
+										<a href="#" tooltip="Donor Phenotype"><img src="/img/icon_20445.svg" style="height:15px;"></a>&nbsp;
+										<a href="#" tooltip="Cell Phenotype"><img src="/img/icon_13582.svg" style="height:15px;"></a>&nbsp;
+										<a href="#" tooltip="Epigenomics: Bseq, RNAseq,ChIPseq"><img src="/img/icon_9168.svg" style="height:15px;"></a>
 									</td>
-									<td>{{p.gender}}</td>
-									<td>{{p.maternal_ethnicity}}</td>
-									<td>{{p.paternal_ethnicity}}</td>
-									<td>{{p.mutations}}</td>
 									<td><a href="index.html#/search/donors/view/donor_report/{{p.id}}" tooltip="View donor report"><i class="icon-bar-chart"></i></a></td>
 								</tr>
 							</tbody>
