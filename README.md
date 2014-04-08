@@ -64,7 +64,7 @@ and add `${HOME}/node_modules/.bin` to the `PATH` environment variable.
 git clone git@github.com:inab/dataportal.git
 cd dataportal
 npm install
-bower install
+# bower install should have been called by *npm install*
 grunt
 ```
 
