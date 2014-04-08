@@ -28,7 +28,7 @@ Then run
 
 2) Download and install [NodeJs] (http://nodejs.org/)
 
-(If you have installed NodeJs by hand, remember to add the "bin" subdirectory to the PATH environment variable)
+(If you have installed NodeJs by hand, remember to add its `bin` subdirectory to the `PATH` environment variable)
 
 3) Download and install [Grunt] (http://gruntjs.com/), using next:
 
@@ -42,7 +42,7 @@ As this command tries to write in the NodeJs installation directory, if NodeJs w
 npm install grunt-cli
 ```
 
-and add ${HOME}/node_modules/.bin to the PATH variable.
+and add `${HOME}/node_modules/.bin` to the `PATH` environment variable.
 
 3) Download and install [Bower] (http://bower.io/), using next:
 
@@ -56,9 +56,9 @@ As this command tries to write in the NodeJs installation directory, if NodeJs w
 npm install bower
 ```
 
-and add ${HOME}/node_modules/.bin to the PATH variable.
+and add `${HOME}/node_modules/.bin` to the `PATH` environment variable.
 
-4) Clone this repository, install the dependencies and execute the grunt command
+4) Clone this repository, install the dependencies and execute the `grunt` command
 
 ```
 git clone git@github.com:inab/dataportal.git
