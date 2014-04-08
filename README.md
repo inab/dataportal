@@ -18,16 +18,19 @@ Please use the wiki pages to add new use cases, one per page. Please document th
 Installation
 ------------
 
-Download [Elasticsearch] (http://www.elasticsearch.org/overview/elkdownloads/) and extract the content in a folder
+1) Download [Elasticsearch] (http://www.elasticsearch.org/overview/elkdownloads/) and extract the content in a folder
 
 Then run
 
 ```
 ./bin/elasticsearch
 ```
-Download and install [Grunt] (http://gruntjs.com/)
 
-Clone this repository and execute the grunt command
+2) Download and install [NodeJs] (http://nodejs.org/)
+
+3) Download and install [Grunt] (http://gruntjs.com/)
+
+4) Clone this repository and execute the grunt command
 
 ```
 git clone https://github.com/inab/dataportal.git
