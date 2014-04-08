@@ -63,9 +63,13 @@ and add `${HOME}/node_modules/.bin` to the `PATH` environment variable.
 ```
 git clone git@github.com:inab/dataportal.git
 cd dataportal
-npm install
 # bower install should have been called by *npm install*
-grunt
+# if asks about d3, choose 2
+npm install
+# Some package installations could have overwritten something, so
+git checkout -- public/lib/angular
+# In the future, this command will be replaced by grunt
+node server
 ```
 
 The application will start on http://localhost:3000
