@@ -58,10 +58,10 @@ npm install bower
 
 and add ${HOME}/node_modules/.bin to the PATH variable.
 
-4) Clone this repository and execute the grunt command
+4) Clone this repository, install the dependencies and execute the grunt command
 
 ```
-git clone https://github.com/inab/dataportal.git
+git clone git@github.com:inab/dataportal.git
 cd dataportal
 npm install
 bower update
