@@ -36,12 +36,19 @@ Then run
 npm install -g grunt-cli
 ```
 
+3) Download and install [Bower] (http://bower.io/), using next:
+
+```
+npm install -g bower
+```
+
 4) Clone this repository and execute the grunt command
 
 ```
 git clone https://github.com/inab/dataportal.git
 cd dataportal
 npm install
+bower update
 grunt
 ```
 
