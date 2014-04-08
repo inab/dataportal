@@ -52,15 +52,11 @@ module.exports = function(app, passport) {
         app.use(express.methodOverride());
 
         //express/mongo session storage
-        /*
-app.use(express.session({
-            secret: 'dataportal',
-            store: new mongoStore({
-                db: db.connection.db,
-                collection: 'sessions'
-            })
+        
+	app.use(express.session({
+            secret: 'dataportal'
         }));
-*/
+
 
         //connect flash for flash messages
         app.use(flash());
