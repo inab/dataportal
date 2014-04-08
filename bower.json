@@ -9,7 +9,9 @@
     "angular-bootstrap": "0.6.0",
     "angular-ui-utils": "0.0.4",
     "angular-mocks": "~1.0.8",
-    "ui.router": "0.2"
+    "d3": "~3.4.1",
+    "nvd3": "~v1.1.15-beta",
+    "angularjs-nvd3-directives":"~v0.0.6"
   },
   "resolutions": {
     "angular": "1.0.6"
