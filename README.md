@@ -28,7 +28,13 @@ Then run
 
 2) Download and install [NodeJs] (http://nodejs.org/)
 
-3) Download and install [Grunt] (http://gruntjs.com/)
+(Remember to add the "bin" subdirectory to the PATH environment variable)
+
+3) Download and install [Grunt] (http://gruntjs.com/), using next:
+
+```
+npm install -g grunt-cli
+```
 
 4) Clone this repository and execute the grunt command
 
