@@ -28,7 +28,7 @@ Then run
 
 2) Download and install [NodeJs] (http://nodejs.org/)
 
-(Remember to add the "bin" subdirectory to the PATH environment variable)
+(If you have installed NodeJs by hand, remember to add the "bin" subdirectory to the PATH environment variable)
 
 3) Download and install [Grunt] (http://gruntjs.com/), using next:
 
@@ -36,11 +36,27 @@ Then run
 npm install -g grunt-cli
 ```
 
+As this command tries to write in the NodeJs installation directory, if NodeJs was installed as a system package, then this step should be run with more privileges. Alternatively you can run
+
+```
+npm install grunt-cli
+```
+
+and add ${HOME}/node_modules/.bin to the PATH variable.
+
 3) Download and install [Bower] (http://bower.io/), using next:
 
 ```
 npm install -g bower
 ```
+
+As this command tries to write in the NodeJs installation directory, if NodeJs was installed as a system package, then this step should be run with more privileges. Alternatively you can run
+
+```
+npm install bower
+```
+
+and add ${HOME}/node_modules/.bin to the PATH variable.
 
 4) Clone this repository and execute the grunt command
 
